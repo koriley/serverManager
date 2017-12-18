@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>server</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    
+  </head>
+  <body>
+    <h1>here a</h1>
+    
+    
+    
+    
+    <script type="text/javascript">
+    console.log("hello");
+      jQuery("h1").click(function(){
+      $.post("/on", {name:"kevin"})
+         .done((e)=>{
+           jQuery("h1").html(JSON.stringify(e[1]));
+         })
+        
+      });
+    </script>
+  </body>
+</html>
+
