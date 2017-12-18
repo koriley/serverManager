@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var psList = require('ps-list');
+var exec = require('child_process').exec;
 var app = express();
 
 app.use(express.static("js"));
@@ -13,12 +14,18 @@ app.get('/', function(req, res) {
 });
 
 app.post("/on", (req, res) => {
-  psList().then(data => {
-    //console.log(data);
-    //=> [{pid: 3213, name: 'node', cmd: 'node test.js', cpu: '0.1'}, ...]
-    res.send(data)
+  // psList().then(data => {
+  //   //console.log(data);
+  //   //=> [{pid: 3213, name: 'node', cmd: 'node test.js', cpu: '0.1'}, ...]
+  //   res.send(data)
+  // });
+  exec('node -v', function(error, stdout, stderr) {
+      console.log('stdout: ' + stdout);
+      console.log('stderr: ' + stderr);
+      if (error !== null) {
+          console.log('exec error: ' + error);
+      }
   });
-
 });
 
 var server = app.listen(4200, function() {
