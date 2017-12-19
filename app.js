@@ -3,6 +3,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var psList = require('ps-list');
 var exec = require('child_process').exec;
+var mongoClient = reqire('mongodb').MongoClient;
 var app = express();
 
 app.use(express.static("js"));
